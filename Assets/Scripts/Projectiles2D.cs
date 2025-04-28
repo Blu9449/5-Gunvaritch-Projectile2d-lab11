@@ -35,10 +35,10 @@ public class Projectiles2D : MonoBehaviour
 
     Vector2 CaluculateProjectileVelocity(Vector2 origin, Vector2 target, float time)
     {
-        Vector2 distande = target - origin;
+        Vector2 distance = target - origin;
 
-        float velocityX = distande.x / time;
-        float velocityY = distande.y / time - 0.5f * Mathf.Abs(Physics2D.gravity.y) * time;
+        float velocityX = distance.x / time;
+        float velocityY = distance.y / time + 0.5f * Mathf.Abs(Physics2D.gravity.y) * time;
 
         Vector2 projectileVelocity = new Vector2(velocityX, velocityY);
 
