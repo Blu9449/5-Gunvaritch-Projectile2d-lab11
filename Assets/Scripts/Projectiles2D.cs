@@ -20,8 +20,30 @@ public class Projectiles2D : MonoBehaviour
             {
                 target.transform.position = new Vector2(hit.point.x, hit.point.y);
                 Debug.Log("hit " + hit.collider.name);
+            
+                Vector2 projectileVelocity = CaluculateProjectileVelocity(shootPoint.position, hit.point, 1f);
+
+                Rigidbody2D shootBullet = Instantiate(butletPrefab, shootPoint.position, Quaternion.identity);
+
+                shootBullet.linearVelocity = projectileVelocity;
+
             }
+
         }
         
     }
+
+    Vector2 CaluculateProjectileVelocity(Vector2 origin, Vector2 target, float time)
+    {
+        Vector2 distande = target - origin;
+
+        float velocityX = distande.x / time;
+        float velocityY = distande.y / time - 0.5f * Mathf.Abs(Physics2D.gravity.y) * time;
+
+        Vector2 projectileVelocity = new Vector2(velocityX, velocityY);
+
+        return projectileVelocity;
+ }
+
+
 }
